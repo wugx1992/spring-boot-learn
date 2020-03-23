@@ -30,4 +30,9 @@ public class TbEntityDao {
         String sql = "INSERT INTO test_tb (name, create_time) VALUES(?,?) ";
         return jdbcTemplate.update(sql, new Object[]{name, new Date()});
     }
+
+    public int copy(int id){
+        String sql = "INSERT INTO test_tb(name, create_time) SELECT name, ? FROM test_tb WHERE id=? ";
+        return jdbcTemplate.update(sql, new Object[]{new Date(), id});
+    }
 }

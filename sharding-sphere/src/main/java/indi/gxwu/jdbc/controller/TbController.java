@@ -29,4 +29,9 @@ public class TbController {
     public int save(String name){
         return tbService.save(name);
     }
+
+    @RequestMapping("/copy")
+    public int save(int id){
+        return tbService.copy(id);
+    }
 }

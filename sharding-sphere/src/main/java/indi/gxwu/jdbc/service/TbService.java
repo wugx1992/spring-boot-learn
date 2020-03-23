@@ -25,6 +25,10 @@ public class TbService {
     public int save(String name){
         return tbEntityDao.save(name);
     }
+
+    public int copy(int id){
+        return tbEntityDao.copy(id);
+    }
 }
 
 
