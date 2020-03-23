@@ -2,14 +2,8 @@ spring:
   application:
     name: sharding-sphere
 
-  jpa:
-    database: MySQL
-    show-sql: true
-    hibernate.ddl-auto: update
-  database:
-    driverClassName: org.mysql.Driver
   datasource:
-    platform: mysql
+    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/wxrc?useUnicode=true&characterEncoding=utf-8
     username: root
     password: credittone
