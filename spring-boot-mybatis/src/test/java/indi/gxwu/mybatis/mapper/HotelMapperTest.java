@@ -47,8 +47,17 @@ public class HotelMapperTest {
         hotel.setName("大冲花园");
         hotel.setZip("无");
         hotel.setCityId(1);
-        hotel.setId(1);
+        hotel.setId(3);
         int result = hotelMapper.update(hotel);
         System.out.println(result);
+        System.out.println(hotelMapper.getOne(1));
+
+
+        Hotel hotel1 = new Hotel();
+        hotel1.setId(1);
+        hotel1.setName("大冲新城花园");
+        result = hotelMapper.update(hotel1);
+        System.out.println(result);
+        System.out.println(hotelMapper.getOne(1));
     }
 }

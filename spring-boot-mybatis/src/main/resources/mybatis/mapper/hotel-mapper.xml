@@ -41,7 +41,7 @@
         <set>
         <if test="address != null">address = #{address},</if>
         <if test="name != null">name = #{name},</if>
-        <if test="cityId != null">city_id = #{cityId},</if>
+        <if test="cityId != 0">city_id = #{cityId},</if>
         </set>
 
         WHERE
