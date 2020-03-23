@@ -20,15 +20,34 @@
     <properties>
         <main-class>indi.gxwu.jdbc.ShardingSphereApplication</main-class>
         <sharding-sphere.version>4.0.1</sharding-sphere.version>
+        <alibaba.druid.version>1.1.10</alibaba.druid.version>
+        <mysql-connector.version>5.1.31</mysql-connector.version>
     </properties>
 
     <dependencies>
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.shardingsphere</groupId>-->
-<!--            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>-->
-<!--            <version>${sharding-sphere.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+            <version>${sharding-sphere.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-namespace</artifactId>
+            <version>${sharding-sphere.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${alibaba.druid.version}</version>
+        </dependency>
 
 
         <dependency>
@@ -53,12 +72,6 @@
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.31</version>
-        </dependency>
 
 
 
