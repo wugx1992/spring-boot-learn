@@ -11,11 +11,11 @@ import java.util.List;
 /**
  * @Author: gx.wu
  * @Date: 2020/3/23 15:11
- * @Description: code something to describe this module what it is
+ * @Description: 读写分离
  */
 @RestController
-@RequestMapping("/tb")
-public class TbController {
+@RequestMapping("/rws")
+public class ReadWriteSeparationController {
 
     @Autowired
     TbService tbService;
