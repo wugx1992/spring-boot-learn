@@ -3,10 +3,10 @@ spring:
     name: sharding-sphere
 
 #  datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
+#    driver-class-name: ${driverClassName}
 #    url: jdbc:mysql://localhost:3306/sharding_test_0?useUnicode=true&characterEncoding=utf-8
-#    username: root
-#    password: credittone
+#    username: ${databaseUsername}
+#    password: ${databasePassword}
 #    initial-size: 5 #启动连接池时，初始建立的连接数量
 #    max-idle: 5 #连接池最大的空闲连接数量
 #    maximum-pool-size: 10 #连接池最大的连接数，包括使用中的和空闲的连接
@@ -15,45 +15,84 @@ spring:
 
   shardingsphere:
     datasource:
-      names: rw_master,rw_slave0
-      rw_master:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
+      names: rw-master,rw-slave0,ds0,ds1      # 注册所有的数据源
+      rw-master:
+        type: ${datasourceType}
+        driver-class-name: ${driverClassName}
         url: jdbc:mysql://localhost:3306/sharding_test_0?useUnicode=true&characterEncoding=utf-8
-        username: root
-        password: credittone
-      rw_slave0:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
+        username: ${databaseUsername}
+        password: ${databasePassword}
+      rw-slave0:
+        type: ${datasourceType}
+        driver-class-name: ${driverClassName}
         url: jdbc:mysql://localhost:3306/sharding_test_1?useUnicode=true&characterEncoding=utf-8
-        username: root
-        password: credittone
-    masterslave:
-      name: rw
-      master-data-source-name: rw_master
-      slave-data-source-names: rw_slave0
+        username: ${databaseUsername}
+        password: ${databasePassword}
+      ds0:
+        type: ${datasourceType}
+        driver-class-name: ${driverClassName}
+        url: jdbc:mysql://localhost:3306/sharding_test_0?useUnicode=true&characterEncoding=utf-8
+        username: ${databaseUsername}
+        password: ${databasePassword}
+      ds1:
+        type: ${datasourceType}
+        driver-class-name: ${driverClassName}
+        url: jdbc:mysql://localhost:3306/sharding_test_1?useUnicode=true&characterEncoding=utf-8
+        username: ${databaseUsername}
+        password: ${databasePassword}
+    #读写分离
+#    masterslave:
+#      name: ms
+#      master-data-source-name: ds0
+#      slave-data-source-names: ds1
     props:
       sql:
         show: true
-#    sharding:
-#      tables:
-#        t_order:
-#          actual-data-nodes: ds$->{0..1}.t_order$->{0..1}
-#          table-strategy:
-#            inline:
-#              sharding-column: order_id
-#              algorithm-expression: t_order$->{order_id % 2}
-#          key-generator:
-#            column: order_id
-#            type: SNOWFLAKE
-#      binding-tables: t_order,t_order_item
-#      broadcast-tables: t_config
-#      default-database-strategy:
+    sharding:
+      #分库策略
+      default-database-strategy:
 #        inline:
-#          sharding-column: user_id
+#          sharding-column: user_id    #分库的列是user_id
 #          algorithm-expression: ds$->{user_id % 2}
+        standard:
+          sharding-column: user_id    #分库的列是user_id
+          precise-algorithm-class-name: indi.gxwu.jdbc.service.PreciseShardingAlgorithmImpl
+      #分表策略
+      tables:
+        t_order:
+          actual-data-nodes: ds$->{0..1}.t_order$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order$->{order_id % 2}
+          key-generator:
+            column: order_id
+            type: SNOWFLAKE
+        t_order_item:
+          actual-data-nodes: ds$->{0..1}.t_order_item$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: order_id
+              algorithm-expression: t_order_item$->{order_id % 2}
+          key-generator:
+            column: order_id
+            type: SNOWFLAKE
+        t_config:
+          actual-data-nodes: ds$->{0}.t_config
+      binding-tables: t_order,t_order_item
+      broadcast-tables: t_config
 
 
+
+
+
+
+
+
+datasourceType: com.alibaba.druid.pool.DruidDataSource
+driverClassName: com.mysql.jdbc.Driver
+databaseUsername: root
+databasePassword: credittone
 
 
 server:

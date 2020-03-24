@@ -10,6 +10,13 @@
     <packaging>pom</packaging>
 
 
+    <properties>
+        <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
+        <httpcomponents-client.version>4.5.2</httpcomponents-client.version>
+        <org-json.version>20160810</org-json.version>
+        <lombok.version>1.16.20</lombok.version>
+    </properties>
+
     <modules>
         <module>spring-boot-mybatis</module>
         <module>sharding-sphere</module>
@@ -28,14 +35,13 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.16.20</version>
+                <version>${lombok.version}</version>
             </dependency>
 
             <dependency>
-                <!-- Import dependency management from Spring Boot -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.5.2.RELEASE</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -52,20 +58,16 @@
             </dependency>
 
 
-            <!-- https://mvnrepository.com/artifact/org.json/json -->
             <dependency>
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
-                <version>20160810</version>
+                <version>${org-json.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcomponents-client</artifactId>
-                <version>4.5.2</version>
+                <version>${httpcomponents-client.version}</version>
             </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-eureka</artifactId>
@@ -75,7 +77,6 @@
 
 
     <pluginRepositories>
-
         <pluginRepository>
             <id>spring-libs-snapshots</id>
             <url>https://repo.spring.io/libs-snapshot-local</url>
@@ -83,12 +84,10 @@
                 <enabled>true</enabled>
             </snapshots>
         </pluginRepository>
-
         <pluginRepository>
             <id>spring-libs-milestones</id>
             <url>https://repo.spring.io/libs-milestone-local</url>
         </pluginRepository>
-
         <pluginRepository>
             <id>spring-libs-release</id>
             <url>https://repo.spring.io/libs-release-local</url>
