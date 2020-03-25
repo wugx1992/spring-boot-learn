@@ -1,4 +1,7 @@
 spring:
+  profiles:
+    active: selftables
+#    active: demo
   application:
     name: sharding-sphere
 
@@ -10,82 +13,6 @@ spring:
 #    initial-size: 5 #启动连接池时，初始建立的连接数量
 #    max-idle: 5 #连接池最大的空闲连接数量
 #    maximum-pool-size: 10 #连接池最大的连接数，包括使用中的和空闲的连接
-
-
-
-  shardingsphere:
-    datasource:
-      names: rw-master,rw-slave0,ds0,ds1      # 注册所有的数据源
-      rw-master:
-        type: ${datasourceType}
-        driver-class-name: ${driverClassName}
-        url: jdbc:mysql://localhost:3306/sharding_test_0?useUnicode=true&characterEncoding=utf-8
-        username: ${databaseUsername}
-        password: ${databasePassword}
-      rw-slave0:
-        type: ${datasourceType}
-        driver-class-name: ${driverClassName}
-        url: jdbc:mysql://localhost:3306/sharding_test_1?useUnicode=true&characterEncoding=utf-8
-        username: ${databaseUsername}
-        password: ${databasePassword}
-      ds0:
-        type: ${datasourceType}
-        driver-class-name: ${driverClassName}
-        url: jdbc:mysql://localhost:3306/sharding_test_0?useUnicode=true&characterEncoding=utf-8
-        username: ${databaseUsername}
-        password: ${databasePassword}
-      ds1:
-        type: ${datasourceType}
-        driver-class-name: ${driverClassName}
-        url: jdbc:mysql://localhost:3306/sharding_test_1?useUnicode=true&characterEncoding=utf-8
-        username: ${databaseUsername}
-        password: ${databasePassword}
-    #读写分离
-#    masterslave:
-#      name: ms
-#      master-data-source-name: ds0
-#      slave-data-source-names: ds1
-    props:
-      sql:
-        show: true
-    sharding:
-      #分库策略
-      default-database-strategy:
-#        inline:
-#          sharding-column: user_id    #分库的列是user_id
-#          algorithm-expression: ds$->{user_id % 2}
-        standard:
-          sharding-column: user_id    #分库的列是user_id
-          precise-algorithm-class-name: indi.gxwu.jdbc.service.PreciseShardingAlgorithmImpl
-      #分表策略
-      tables:
-        t_order:
-          actual-data-nodes: ds$->{0..1}.t_order$->{0..1}
-          table-strategy:
-            inline:
-              sharding-column: order_id
-              algorithm-expression: t_order$->{order_id % 2}
-          key-generator:
-            column: order_id
-            type: SNOWFLAKE
-        t_order_item:
-          actual-data-nodes: ds$->{0..1}.t_order_item$->{0..1}
-          table-strategy:
-            inline:
-              sharding-column: order_id
-              algorithm-expression: t_order_item$->{order_id % 2}
-          key-generator:
-            column: order_id
-            type: SNOWFLAKE
-        t_config:
-          actual-data-nodes: ds$->{0}.t_config
-      binding-tables: t_order,t_order_item
-      broadcast-tables: t_config
-
-
-
-
-
 
 
 
