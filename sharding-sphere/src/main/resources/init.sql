@@ -190,9 +190,9 @@ CREATE TABLE `sharding_test_0`.`history_log_msg` (
      PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-INSERT INTO `sharding_test_0``history_log_msg` VALUES ('1', '1', '10', '2020-03-01 00:00:00', '2020-03-21 23:59:59', '1', '2020-03-25 14:49:31');
-INSERT INTO `sharding_test_0``history_log_msg` VALUES ('2', '11', '20', '2020-03-22 00:00:58', '2020-03-25 23:59:59', '2', '2020-03-25 14:50:48');
-INSERT INTO `sharding_test_0``history_log_msg` VALUES ('3', '21', '30', '2020-03-26 00:00:15', null, '3', '2020-03-25 14:51:26');
+INSERT INTO `sharding_test_0`.`history_log_msg` VALUES ('1', '1', '10', '2020-03-01 00:00:00', '2020-03-21 23:59:59', '1', '2020-03-25 14:49:31');
+INSERT INTO `sharding_test_0`.`history_log_msg` VALUES ('2', '11', '20', '2020-03-22 00:00:58', '2020-03-25 23:59:59', '2', '2020-03-25 14:50:48');
+INSERT INTO `sharding_test_0`.`history_log_msg` VALUES ('3', '21', '30', '2020-03-26 00:00:15', null, '3', '2020-03-25 14:51:26');
 
 
 CREATE TABLE `sharding_test_1`.`history_log_msg` (
@@ -206,6 +206,6 @@ CREATE TABLE `sharding_test_1`.`history_log_msg` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-INSERT INTO `sharding_test_1``history_log_msg` VALUES ('1', '1', '10', '2020-03-01 00:00:00', '2020-03-21 23:59:59', '1', '2020-03-25 14:49:31');
-INSERT INTO `sharding_test_1``history_log_msg` VALUES ('2', '11', '20', '2020-03-22 00:00:58', '2020-03-25 23:59:59', '2', '2020-03-25 14:50:48');
-INSERT INTO `sharding_test_1``history_log_msg` VALUES ('3', '21', '30', '2020-03-26 00:00:15', null, '3', '2020-03-25 14:51:26');
+INSERT INTO `sharding_test_1`.`history_log_msg` VALUES ('1', '1', '10', '2020-03-01 00:00:00', '2020-03-21 23:59:59', '1', '2020-03-25 14:49:31');
+INSERT INTO `sharding_test_1`.`history_log_msg` VALUES ('2', '11', '20', '2020-03-22 00:00:58', '2020-03-25 23:59:59', '2', '2020-03-25 14:50:48');
+INSERT INTO `sharding_test_1`.`history_log_msg` VALUES ('3', '21', '30', '2020-03-26 00:00:15', null, '3', '2020-03-25 14:51:26');

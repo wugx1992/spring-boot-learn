@@ -2,6 +2,7 @@ package indi.gxwu.jdbc.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 import java.util.Date;
 
@@ -13,9 +14,15 @@ import java.util.Date;
 @Data
 @Builder
 public class HistoryLogMsg {
+    private int id;
     private Integer beginId;
     private Integer endId;
     private Date beginTime;
     private Date endTime;
     private int tableSuffix;
+    private Date createTime;
+
+    @Tolerate
+    public HistoryLogMsg(){
+    }
 }
