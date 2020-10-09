@@ -14,7 +14,7 @@
         <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
         <httpcomponents-client.version>4.5.2</httpcomponents-client.version>
         <org-json.version>20160810</org-json.version>
-        <lombok.version>1.16.20</lombok.version>
+        <lombok.version>1.18.14</lombok.version>
     </properties>
 
     <modules>
